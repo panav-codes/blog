@@ -1,3 +1,12 @@
+/* Fonts are hosted on panavb.com itself (latin subset) so text never waits on a third-party server. */
+@font-face{font-family:"Archivo";src:url("/fonts/archivo.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist";src:url("/fonts/geist.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("/fonts/geist-mono.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Barlow";src:url("/fonts/barlow-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url("/fonts/barlow-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow";src:url("/fonts/barlow-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow";src:url("/fonts/barlow-700.woff2") format("woff2");font-weight:700;font-display:swap}
+
 /* Layout: dark editorial hero holding a live-looking Power BI canvas, light bento + work sections, dark statement band, about with photo, mint contact strip, giant wordmark footer.
    Motif: the Power BI selection frame (accent border + square handles + a type label) marks the one thing that matters in every section. Single deliberate look. */
 :root{
