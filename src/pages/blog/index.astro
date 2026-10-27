@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { publishedPosts, plannedPosts } from '../../lib/content';
+
+const published = await publishedPosts();
+const planned = await plannedPosts();
+---
+<Base title="Blog" description="Notes from the build log: AI-first Power BI development, report design and the files to try it yourself.">
+  <section class="page-head dark gutter">
+    <div class="wrap">
+      <span class="lbl"><b>[ Blog ]</b> Notes from the build log</span>
+      <h1>What worked, what broke, and the file to try it.</h1>
+      <p>One post a month on AI-first Power BI development and report design. <a class="inline-d" href="/rss.xml" style="white-space:nowrap">RSS feed</a></p>
+    </div>
+  </section>
+  <section class="sec gutter" style="padding-top:64px">
+    <div class="wrap">
+      {published.length > 0 && <PostList posts={published} />}
+      {planned.length > 0 && (
+        <div class="coming">
+          <span class="lbl"><b>[ Coming up ]</b></span>
+          <PostList posts={planned} />
+        </div>
+      )}
+      {published.length === 0 && planned.length === 0 && <p class="empty">The first post lands soon.</p>}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { workItems } from '../../lib/content';
+const items = await workItems();
+---
+<Base title="Work" description="Power BI and Fabric builds you can open and take apart. Every build ships with the file.">
+  <section class="page-head dark gutter">
+    <div class="wrap">
+      <span class="lbl"><b>[ Work ]</b> Selected builds</span>
+      <h1>Builds you can open and take apart.</h1>
+      <p>Every build ships with the file and a write-up of how it was made. All data is synthetic.</p>
+    </div>
+  </section>
+  <section class="sec gutter" style="padding-top:64px">
+    <div class="wrap work">
+      {items.map((item) => <WorkCard item={item} />)}
+    </div>
+  </section>
+</Base>

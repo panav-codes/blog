@@ -1,0 +1,44 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import WorkPreview from '../../components/WorkPreview.astro';
+import { workItems, slugOf } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const items = await workItems();
+  return items.map((item) => ({ params: { slug: slugOf(item.id) }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const d = item.data;
+const { Content } = await render(item);
+const bg = { pies: 'violet', turnover: 'light', survival: 'dark', loyalty: 'sand', none: 'light' }[d.preview];
+---
+<Base title={d.title} description={d.summary} image={d.cover}>
+  <header class="page-head dark gutter article-head">
+    <div class="wrap">
+      <a class="back" href="/work">&larr; Work</a>
+      <span class="lbl"><b>[ {d.year} ]</b> {d.format}</span>
+      <h1>{d.title}</h1>
+      <p>{d.summary}</p>
+    </div>
+  </header>
+  <div class="gutter cover-wrap">
+    <div class="wrap">
+      {d.cover
+        ? <img class="cover" src={d.cover} alt={`${d.title} report`} />
+        : <div class={`pv pv-${bg} cover-pv`}><WorkPreview variant={d.preview} /></div>}
+    </div>
+  </div>
+  <div class="gutter">
+    <div class="prose">
+      <div class="tags" style="margin-bottom:28px">{d.tags.map((t) => <span>{t}</span>)}</div>
+      <Content />
+      {d.download && (
+        <aside class="post-aside">
+          <a class="btn btn-accent" href={d.download}>Download the {d.format} <span class="arr" aria-hidden="true">&darr;</span></a>
+        </aside>
+      )}
+    </div>
+  </div>
+</Base>

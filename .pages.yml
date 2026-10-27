@@ -1,0 +1,169 @@
+# Editor for panavb.com. Open https://app.pagescms.org (or panavb.com/admin), sign in with GitHub, pick this repo.
+media:
+  input: public/media
+  output: /media
+  categories: [image, document]
+
+content:
+  - name: blog
+    label: Blog posts
+    type: collection
+    path: src/content/blog
+    filename: "{year}-{month}-{day}-{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, status, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: One-line summary
+        type: text
+        description: Shown under the title and when the link is shared on LinkedIn.
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+      - name: status
+        label: Status
+        type: select
+        default: draft
+        description: "Draft: only people with the link can see it. Planned: listed as 'Soon' with no page. Published: live everywhere."
+        options:
+          values: [draft, planned, published]
+      - name: cover
+        label: Cover image
+        type: image
+        description: Optional. A wide screenshot works best (16:9).
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: download
+        label: Download file
+        type: file
+        description: Optional. The PBIX or PBIP zip readers can download. Files over 25 MB won't host here; paste a GitHub release link instead.
+      - name: linkedin
+        label: LinkedIn post URL
+        type: string
+        description: Optional. Paste the LinkedIn post link after you've shared it there.
+      - name: body
+        label: Post
+        type: rich-text
+        options:
+          format: markdown
+
+  - name: work
+    label: Work (projects)
+    type: collection
+    path: src/content/work
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, year, order]
+      primary: title
+      sort: [order, title]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: year
+        label: Year
+        type: number
+        required: true
+      - name: summary
+        label: One-line summary
+        type: text
+        required: true
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: format
+        label: File type badge
+        type: string
+        default: PBIX
+        description: Small label on the card, e.g. PBIX, PBIP, Fabric App.
+      - name: cover
+        label: Cover screenshot
+        type: image
+        description: Replaces the drawn preview on the card. Use a 16:10 screenshot.
+      - name: preview
+        label: Drawn preview (used when there's no cover)
+        type: select
+        default: none
+        options:
+          values: [none, pies, turnover, survival, loyalty]
+      - name: download
+        label: Download file
+        type: file
+      - name: order
+        label: Order on the page
+        type: number
+        default: 99
+        description: Lower numbers show first. The home page shows the first four.
+      - name: hidden
+        label: Hide from the site
+        type: boolean
+        default: false
+      - name: body
+        label: Write-up
+        type: rich-text
+        options:
+          format: markdown
+
+  - name: experience
+    label: Experience
+    type: collection
+    path: src/content/experience
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [company, role, order, hidden]
+      primary: company
+      sort: [order, company]
+    fields:
+      - name: role
+        label: Role
+        type: string
+        required: true
+      - name: company
+        label: Company
+        type: string
+        required: true
+      - name: start
+        label: Start (e.g. Jun 2023)
+        type: string
+        required: true
+      - name: end
+        label: End (e.g. May 2023, or Now)
+        type: string
+        default: Now
+      - name: logo
+        label: Logo (square)
+        type: image
+      - name: summary
+        label: What you did
+        type: text
+        required: true
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: order
+        label: Order
+        type: number
+        default: 99
+        description: Lower numbers show first.
+      - name: hidden
+        label: Hide from the site
+        type: boolean
+        default: false

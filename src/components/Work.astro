@@ -1,0 +1,18 @@
+---
+import WorkCard from './WorkCard.astro';
+import { workItems } from '../lib/content';
+
+const all = await workItems();
+const items = all.slice(0, 4);
+---
+<section class="gutter" id="work" aria-labelledby="wk-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="lbl"><b>[ 02 ]</b> Selected work</span><h2 id="wk-h">Builds you can open and take apart.</h2></div>
+      <p>Every build ships with the file and a write-up of how it was made. All data is synthetic. <a class="inline" href="/work">All work &rarr;</a></p>
+    </div>
+    <div class="work">
+      {items.map((item) => <WorkCard item={item} />)}
+    </div>
+  </div>
+</section>

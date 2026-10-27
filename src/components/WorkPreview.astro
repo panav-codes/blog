@@ -1,0 +1,40 @@
+---
+interface Props { variant: string }
+const { variant } = Astro.props;
+---
+{variant === "pies" && (<Fragment><div class="pv-in">
+          <div><div class="pv-title">Six ways to pie</div><div class="pv-sub">Hires by channel · FY2026</div></div>
+          <div class="pies" aria-hidden="true">
+            <i style="background:conic-gradient(#B9A8FF 0 44%,#7A5CFF 44% 76%,#3E2A9C 76%)"></i>
+            <i style="background:radial-gradient(circle,#1A1238 54%,transparent 55%),conic-gradient(#B9A8FF 0 30%,#7A5CFF 30% 79%,#3E2A9C 79%)"></i>
+            <i class="ex" style="background:conic-gradient(#FF8A66 0 18%,#7A5CFF 18% 58%,#4C35B5 58%)"></i>
+            <i style="background:radial-gradient(circle,#1A1238 64%,transparent 65%),conic-gradient(#7A5CFF 0 66%,#2E2170 66%)"></i>
+            <i style="background:conic-gradient(#7A5CFF 0 52%,#B9A8FF 52% 71%,#2E2170 71%)"></i>
+            <i style="background:radial-gradient(circle,#1A1238 46%,transparent 47%),conic-gradient(#D7CCFF 0 41%,#7A5CFF 41%)"></i>
+          </div>
+        </div></Fragment>)}
+{variant === "turnover" && (<Fragment><div class="pv-in">
+          <div><div class="pv-title">Workforce turnover</div><div class="pv-sub" style="color:#8A8A94">Fabric App · live model</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div style="background:#fff;border-radius:8px;padding:10px"><div style="font:500 .66rem var(--din);color:#77777F">Turnover</div><div style="font:700 1.25rem var(--din)">12.8%</div></div>
+            <div style="background:#fff;border-radius:8px;padding:10px"><div style="font:500 .66rem var(--din);color:#77777F">Regretted exits</div><div style="font:700 1.25rem var(--din)">41</div></div>
+            <div style="background:#fff;border-radius:8px;padding:10px"><div style="font:500 .66rem var(--din);color:#77777F">Avg tenure</div><div style="font:700 1.25rem var(--din)">3.6 yrs</div></div>
+          </div>
+          <div style="flex:1;background:#fff;border-radius:8px;padding:10px 12px;display:flex;align-items:flex-end;gap:5px" aria-hidden="true">
+            <i style="flex:1;height:34%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:48%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:40%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:62%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:88%;background:#5B3BF5;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:58%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:50%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:44%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i><i style="flex:1;height:38%;background:#DCD5FF;border-radius:3px 3px 1px 1px"></i>
+          </div>
+        </div></Fragment>)}
+{variant === "survival" && (<Fragment><div class="pv-in">
+          <div><div class="pv-title">Mortgage outcomes</div><div class="pv-sub">Cumulative incidence by month on book</div></div>
+          <svg viewBox="0 0 320 140" style="flex:1;width:100%" preserveAspectRatio="none" aria-hidden="true"><g stroke="#24242C"><line x1="0" y1="20" x2="320" y2="20"/><line x1="0" y1="70" x2="320" y2="70"/><line x1="0" y1="120" x2="320" y2="120"/></g><path d="M0 120 H40 V108 H80 V92 H120 V78 H160 V62 H200 V52 H240 V40 H280 V34 H320" fill="none" stroke="#7A61FF" stroke-width="2.5"/><path d="M0 120 H52 V116 H104 V110 H156 V103 H208 V98 H260 V93 H320" fill="none" stroke="#FF6A3D" stroke-width="2.5"/></svg>
+          <div style="display:flex;gap:16px;font:500 .68rem var(--din);color:#9C9CA8"><span><i style="display:inline-block;width:12px;height:3px;background:#7A61FF;vertical-align:middle;margin-right:6px"></i>Prepayment</span><span><i style="display:inline-block;width:12px;height:3px;background:#FF6A3D;vertical-align:middle;margin-right:6px"></i>Default</span></div>
+        </div></Fragment>)}
+{variant === "loyalty" && (<Fragment><div class="pv-in">
+          <div><div class="pv-title">Airline loyalty</div><div class="pv-sub" style="color:#8A8475">Members by tier · FY2026</div></div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px" aria-hidden="true">
+            <div style="display:grid;grid-template-columns:62px 1fr 48px;gap:10px;align-items:center;font:500 .7rem var(--din);color:#55524A"><span>Member</span><span style="height:12px;border-radius:3px;background:#2B2A27"></span><span style="font-weight:700;color:#1B1B1F">48,210</span></div>
+            <div style="display:grid;grid-template-columns:62px 1fr 48px;gap:10px;align-items:center;font:500 .7rem var(--din);color:#55524A"><span>Silver</span><span style="height:12px;border-radius:3px;background:#B9B2A3;width:56%"></span><span style="font-weight:700;color:#1B1B1F">26,940</span></div>
+            <div style="display:grid;grid-template-columns:62px 1fr 48px;gap:10px;align-items:center;font:500 .7rem var(--din);color:#55524A"><span>Gold</span><span style="height:12px;border-radius:3px;background:#FF6A3D;width:31%"></span><span style="font-weight:700;color:#1B1B1F">14,880</span></div>
+            <div style="display:grid;grid-template-columns:62px 1fr 48px;gap:10px;align-items:center;font:500 .7rem var(--din);color:#55524A"><span>Platinum</span><span style="height:12px;border-radius:3px;background:#B9B2A3;width:11%"></span><span style="font-weight:700;color:#1B1B1F">5,310</span></div>
+          </div>
+        </div></Fragment>)}

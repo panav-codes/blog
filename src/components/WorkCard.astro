@@ -1,0 +1,20 @@
+---
+import WorkPreview from './WorkPreview.astro';
+import { slugOf, type WorkItem } from '../lib/content';
+
+interface Props { item: WorkItem }
+const { item } = Astro.props;
+const d = item.data;
+const bg = { pies: 'violet', turnover: 'light', survival: 'dark', loyalty: 'sand', none: 'light' }[d.preview];
+---
+<a class="case rise" href={`/work/${slugOf(item.id)}`}>
+  <div class={`pv pv-${bg}`}>
+    {d.cover ? <img class="pv-img" src={d.cover} alt="" loading="lazy" /> : <WorkPreview variant={d.preview} />}
+    <span class="case-x">{d.format}</span>
+  </div>
+  <div class="meta">
+    <div class="meta-top"><h3>{d.title}</h3><span class="lbl">( {d.year} )</span></div>
+    <p>{d.summary}</p>
+    <div class="tags">{d.tags.map((t) => <span>{t}</span>)}</div>
+  </div>
+</a>

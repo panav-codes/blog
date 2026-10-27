@@ -1,0 +1,17 @@
+---
+import PostList from './PostList.astro';
+import { publishedPosts, plannedPosts } from '../lib/content';
+
+const published = await publishedPosts();
+const planned = await plannedPosts();
+const posts = [...published, ...planned].slice(0, 3);
+---
+<section class="gutter" id="blog" aria-labelledby="wr-h" style="padding-top:110px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="lbl"><b>[ 07 ]</b> Blog</span><h2 id="wr-h">Notes from the build log.</h2></div>
+      <p>One post a month on what worked, what broke, and the file to try it yourself. <a class="inline" href="/blog">All posts &rarr;</a></p>
+    </div>
+    <PostList posts={posts} />
+  </div>
+</section>

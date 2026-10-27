@@ -1,0 +1,52 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { pagePosts, publishedPosts, slugOf, fmtDate } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await pagePosts();
+  return posts.map((post) => ({ params: { slug: slugOf(post.id) }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const isDraft = d.status === 'draft';
+const more = (await publishedPosts()).filter((p) => p.id !== post.id).slice(0, 3);
+---
+<Base title={d.title} description={d.description} image={d.cover} type="article" noindex={isDraft}>
+  <article>
+    <header class="page-head dark gutter article-head">
+      <div class="wrap">
+        <a class="back" href="/blog">&larr; Blog</a>
+        {isDraft && <span class="draft-pill">Draft &middot; only people with this link can see it</span>}
+        <span class="lbl"><b>[ {fmtDate(d.date)} ]</b> {d.tags.join(' · ')}</span>
+        <h1>{d.title}</h1>
+        {d.description && <p>{d.description}</p>}
+      </div>
+    </header>
+    {d.cover && (
+      <div class="gutter cover-wrap"><div class="wrap"><img class="cover" src={d.cover} alt="" /></div></div>
+    )}
+    <div class="gutter">
+      <div class="prose">
+        <Content />
+        {(d.download || d.linkedin) && (
+          <aside class="post-aside">
+            {d.download && <a class="btn btn-accent" href={d.download}>Download the file <span class="arr" aria-hidden="true">&darr;</span></a>}
+            {d.linkedin && <a class="btn btn-outline" href={d.linkedin} target="_blank" rel="noopener">Discuss on LinkedIn</a>}
+          </aside>
+        )}
+      </div>
+    </div>
+  </article>
+  {more.length > 0 && (
+    <section class="gutter" style="padding-top:96px">
+      <div class="wrap">
+        <span class="lbl" style="margin-bottom:20px"><b>[ More ]</b> From the blog</span>
+        <PostList posts={more} />
+      </div>
+    </section>
+  )}
+</Base>

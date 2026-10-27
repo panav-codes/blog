@@ -1,0 +1,23 @@
+---
+import { slugOf, fmtMonth, type Post } from '../lib/content';
+
+interface Props { posts: Post[] }
+const { posts } = Astro.props;
+---
+<div class="posts">
+  {posts.map((p) =>
+    p.data.status === 'planned' ? (
+      <div class="post is-planned">
+        <time datetime={p.data.date.toISOString()}>{fmtMonth(p.data.date)}</time>
+        <h3>{p.data.title} <span class="soon">Soon</span></h3>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </div>
+    ) : (
+      <a class="post" href={`/blog/${slugOf(p.id)}`}>
+        <time datetime={p.data.date.toISOString()}>{fmtMonth(p.data.date)}</time>
+        <h3>{p.data.title}</h3>
+        <span class="go" aria-hidden="true">&rarr;</span>
+      </a>
+    )
+  )}
+</div>

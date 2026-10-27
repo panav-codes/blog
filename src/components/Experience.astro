@@ -1,0 +1,25 @@
+---
+import { experienceItems } from '../lib/content';
+const jobs = await experienceItems();
+---
+<section class="gutter" id="experience" aria-labelledby="ex-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="lbl"><b>[ 06 ]</b> Experience</span><h2 id="ex-h">Where the hours went.</h2></div>
+      <p>Consulting, banking, manufacturing and energy, from the source system up to the executive page. <a class="inline" href="https://www.linkedin.com/in/panavbh" target="_blank" rel="noopener">Full profile on LinkedIn &rarr;</a></p>
+    </div>
+    <ol class="xp">
+      {jobs.map(({ data: j }) => (
+        <li class="job rise">
+          <span class="when">{j.start} &ndash; {j.end}</span>
+          <span class="logo">{j.logo ? <img src={j.logo} alt={j.company} loading="lazy" /> : <span class="logo-fallback" aria-hidden="true">{j.company.slice(0, 2)}</span>}</span>
+          <div class="what">
+            <h3>{j.role} <span>&middot; {j.company}</span></h3>
+            <p>{j.summary}</p>
+            <div class="tags">{j.tags.map((t) => <span>{t}</span>)}</div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

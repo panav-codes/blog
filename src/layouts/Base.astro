@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+}
+
+const site = 'Panav B';
+const {
+  title,
+  description = 'Panav B designs pixel-perfect Power BI experiences for leaders: semantic models and reports built with AI agents, then finished by hand.',
+  image = '/images/og.png',
+  noindex = false,
+  type = 'website',
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${site}` : `${site} · Power BI developer`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Panav B · Blog" href="/rss.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? site} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0A0A0C" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Barlow:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" />
+  </head>
+  <body>
+    <header class="nav gutter">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="Panav B, home"><span class="glyph" aria-hidden="true"><i></i><i></i><i></i></span>Panav B</a>
+        <nav class="menu" aria-label="Primary">
+          <a href="/work">Work</a><a href="/#approach">Approach</a><a href="/#about">About</a><a href="/#experience">Experience</a><a href="/blog">Blog</a>
+        </nav>
+        <a class="btn btn-light" href="/#contact">Let's talk <span class="arr" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+
+    <footer class="dark gutter">
+      <div class="wrap">
+        <div class="foot-top">
+          <span>&copy; {new Date().getFullYear()} Panav B &middot; Toronto</span>
+          <nav aria-label="Footer">
+            <a href="/work">Work</a><a href="/blog">Blog</a><a href="/rss.xml">RSS</a>
+            <a href="https://www.linkedin.com/in/panavbh" target="_blank" rel="noopener">LinkedIn</a><a href="/#contact">Contact</a>
+          </nav>
+        </div>
+        <div class="wordmark" aria-hidden="true">Panav<span>B</span></div>
+      </div>
+    </footer>
+
+    <script>
+      const c = document.getElementById('copy');
+      const addr = document.getElementById('addr');
+      if (c && addr) {
+        c.addEventListener('click', () => {
+          const done = () => { c.textContent = 'Copied'; setTimeout(() => (c.textContent = 'Copy email'), 1600); };
+          const fb = () => { const r = document.createRange(); r.selectNodeContents(addr); const s = window.getSelection(); s?.removeAllRanges(); s?.addRange(r); c.textContent = 'Selected'; };
+          try { navigator.clipboard.writeText('hello@panavb.com').then(done, fb); } catch { fb(); }
+        });
+      }
+    </script>
+  </body>
+</html>
